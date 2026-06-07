@@ -21,7 +21,7 @@ export default function Testimonials() {
             <Image
               width={48}
               height={48}
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" 
+              src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d" 
               className="rounded-full h-12 w-12 object-cover shrink-0" 
               alt="user image" 
             />

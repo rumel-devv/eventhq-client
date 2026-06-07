@@ -1,8 +1,9 @@
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
+import { role } from "better-auth/client";
 import { MongoClient } from "mongodb";
 
-const client = new MongoClient(process.env.MONGODB_URI );
+const client = new MongoClient(process.env.MONGODB_URI);
 const db = client.db(process.env.DB_NAME);
 
 export const auth = betterAuth({
@@ -10,13 +11,23 @@ export const auth = betterAuth({
     client,
   }),
   emailAndPassword: {
-    enabled: true
+    enabled: true,
   },
   socialProviders: {
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID || "placeholder-google-client-id",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "placeholder-google-client-secret"
-    }
+      clientSecret:
+        process.env.GOOGLE_CLIENT_SECRET || "placeholder-google-client-secret",
+    },
   },
- 
+  user: {
+    additionalFields: {
+      role: {
+        defaultValue: "attendee",
+      },
+      isBlocked: {
+        defaultValue: false,
+      },
+    },
+  },
 });
