@@ -27,11 +27,11 @@ const MENU_BY_ROLE = {
     { key: "payments", label: "Payments", icon: FaHistory },
   ],
   organizer: [
-    { key: "overview", label: "Overview", icon: FaUsers },
-    { key: "organization", label: "Organization", icon: FaBuilding },
-    { key: "add-event", label: "Add Event", icon: FaPlus },
-    { key: "manage-events", label: "Manage Events", icon: FaCalendarAlt },
-    { key: "attendees", label: "Attendees", icon: FaUsers },
+    { key: "overview", label: "Overview", icon: FaUsers ,href:"/dashboard/organizer"},
+    { key: "organization", label: "Organization", icon: FaBuilding ,href:"/dashboard/organization"},
+    { key: "add-event", label: "Add Event", icon: FaPlus ,href:"dashboard/add-event"},
+    { key: "manage-events", label: "Manage Events", icon: FaCalendarAlt ,href:"dashboard/manage-events"},
+    { key: "attendees", label: "Attendees", icon: FaUsers,href:"dashboard/attendees" },
   ],
   admin: [
     { key: "users", label: "Users", icon: FaUserShield },
@@ -60,7 +60,7 @@ export default function DashboardSidebar({ role = "organizer" }) {
   };
 
   const SidebarContent = () => (
-    <div className="h-full flex flex-col bg-slate-950/80 backdrop-blur-xl">
+    <div className="h-full  flex flex-col bg-slate-950/80 backdrop-blur-xl">
       {/* Brand / Logo */}
       <div className="px-6 py-5 border-b border-white/5">
         <Logo />
@@ -93,13 +93,13 @@ export default function DashboardSidebar({ role = "organizer" }) {
       <nav className="flex-grow overflow-y-auto px-3 py-4 space-y-1">
         <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest px-3 pb-2">Navigation</p>
 
-        {menuItems.map(({ key, label, icon: Icon }) => {
+        {menuItems.map(({ key, label, icon: Icon,href }) => {
           const targetPath = getPath(key);
           const isActive = pathname === targetPath || (role === "admin" && pathname === "/dashboard/admin" && key === "users");
           return (
             <Link
               key={key}
-              href={targetPath}
+              href={href}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 text-left cursor-pointer ${isActive
                 ? "bg-gradient-to-r from-pink-500/20 to-indigo-600/20 text-white border border-pink-500/20 shadow-sm"
                 : "text-slate-400 hover:text-white hover:bg-white/5"

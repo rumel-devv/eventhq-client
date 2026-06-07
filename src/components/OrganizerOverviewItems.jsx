@@ -1,4 +1,4 @@
-const OrganizerOverviewItems = () => {
+const OrganizerOverview = () => {
     const stats = {
         totalEvents: 15,
         totalAttendees: 450,
