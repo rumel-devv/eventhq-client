@@ -13,6 +13,7 @@ import { FaImage } from "react-icons/fa";
 
 const OrganiizationPage = () => {
   const { data: session } = useSession();
+
   const {
     register,
     handleSubmit,
@@ -49,12 +50,12 @@ const OrganiizationPage = () => {
     if (!myOrg) {
       const resData = await addOrganization(orgData);
       if (resData.insertedId) {
-        toast.success("Org Profile added");
+        toast.success("Organization Profile added");
       }
     } else {
       const updatedRes = await updateOrg(orgData, myOrg._id);
       if (updatedRes.modifiedCount > 0) {
-        toast.success("Org Profile updated");
+        toast.success("Organization Profile updated");
       }
     }
 
@@ -181,7 +182,7 @@ const OrganiizationPage = () => {
                   className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold h-11 shadow-lg"
                   radius="lg"
                 >
-                  Save Changes
+               Add Organization
                 </Button>
               </div>
             </Form>

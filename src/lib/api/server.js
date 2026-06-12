@@ -16,3 +16,11 @@ export const serverFetch = async (path) => {
   const res = await fetch(`${baseURL}${path}`)
   return await res.json()
 }
+
+
+export const deleteMutation = async (path) => {
+  const res = await fetch(`${baseURL}${path}`, {
+    method: 'DELETE',
+  });
+  return res.json();
+};
