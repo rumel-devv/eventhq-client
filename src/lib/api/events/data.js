@@ -10,6 +10,6 @@ export const myEvents = async (email) => {
 };
 
 export const fetchEvents = async (query) => {
-  const result = await serverFetch(`/api/events`);
+  const result = await serverFetch(`/api/events?${query.toString()}`);
   return result;
 };
