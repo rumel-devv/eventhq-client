@@ -8,8 +8,8 @@ export const myEvents = async (email) => {
 
   return result;
 };
-export const fetchEvents = async (query) => {
-  const result = await serverFetch(`/api/events?${query.toString()}`);
 
+export const fetchEvents = async (query) => {
+  const result = await serverFetch(`/api/events`);
   return result;
 };

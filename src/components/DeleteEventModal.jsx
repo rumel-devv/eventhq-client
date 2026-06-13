@@ -6,12 +6,13 @@ import toast from "react-hot-toast";
 
 const DeleteEventModal = ({ isDeleteOpen, setIsDeleteOpen, id }) => {
     const router = useRouter();
+
     const handleDeleteEvent = async () => {
         const res = await deleteEvent(id);
         if (res?.deletedCount > 0) {
-            router.refresh();
             toast.success("Event deleted successfully");
             setIsDeleteOpen(false)
+             router.refresh();
         }
     }
     return (
@@ -27,7 +28,7 @@ const DeleteEventModal = ({ isDeleteOpen, setIsDeleteOpen, id }) => {
                         </Modal.Body>
                         <Modal.Footer className="flex justify-end gap-3 pt-4">
                             <Button variant="light" className="text-slate-400" onPress={() => setIsDeleteOpen(false)}>Cancel</Button>
-                            <Button color="danger" className="font-bold" onPress={handleDeleteEvent}>Delete Event</Button>
+                            <Button className="font-bold bg-red-500 text-white px-4 py-1" onPress={handleDeleteEvent}>Delete Event</Button>
                         </Modal.Footer>
                     </Modal.Dialog>
                 </Modal.Container>
