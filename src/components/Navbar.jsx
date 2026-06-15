@@ -3,15 +3,12 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  FaUser,
-  FaSignOutAlt,
-  FaThLarge,
-} from "react-icons/fa";
+import { FaUser, FaSignOutAlt, FaThLarge } from "react-icons/fa";
 import Logo from "./Logo";
 import Image from "next/image";
 
 import { useSession, signOut } from "@/lib/auth-client";
+import { Avatar } from "@heroui/react";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,21 +21,14 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDropdownOpen(false);
       }
     }
 
     document.addEventListener("mousedown", handleClickOutside);
 
-    return () =>
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLogout = async () => {
@@ -117,21 +107,20 @@ export default function Navbar() {
           ) : (
             <div className="relative" ref={dropdownRef}>
               <button
-                onClick={() =>
-                  setDropdownOpen(!dropdownOpen)
-                }
+                onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="cursor-pointer"
               >
-                <Image
-                  src={
-                    user.image ||
-                    "https://ui-avatars.com/api/?name=User"
-                  }
-                  alt={user.name || "User"}
-                  width={40}
-                  height={40}
-                  className="rounded-full border border-pink-500 object-cover"
-                />
+                <Avatar className="w-10 h-10 border-2 border-pink-500">
+                  <Avatar.Image alt={user?.name || "User"} src={user?.image} />
+                  <Avatar.Fallback>
+                    {user?.name
+                      ?.split(" ")
+                      .map((word) => word[0])
+                      .join("")
+                      .slice(0, 2)
+                      .toUpperCase() || "U"}
+                  </Avatar.Fallback>
+                </Avatar>
               </button>
 
               {dropdownOpen && (
@@ -141,9 +130,7 @@ export default function Navbar() {
                       {user.role || "User"}
                     </p>
 
-                    <p className="font-semibold text-white">
-                      {user.name}
-                    </p>
+                    <p className="font-semibold text-white">{user.name}</p>
 
                     <p className="text-xs text-slate-400 truncate">
                       {user.email}

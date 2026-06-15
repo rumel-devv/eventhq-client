@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 export const metadata = {
-  title: "Ticketo | Premium Event Discovery & Ticket Booking Platform",
+  title: "EventHq | Premium Event Discovery & Ticket Booking Platform",
   description:
     "Browse, discover, and purchase tickets for the finest premium events near you. Or create your own organizer account and host events seamlessly.",
 };
