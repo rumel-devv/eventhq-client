@@ -1,34 +1,17 @@
-import EventCard from "@/components/EventCard";
+import EventsList from "@/components/EventsList";
 import FilterPanel from "@/components/FilterPanel";
-import { fetchEvents } from "@/lib/api/events/data";
 import { Card } from "@heroui/react";
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 
 const EventsPage = async ({ searchParams }) => {
   const sParams = await searchParams;
-  // console.log(sParams);
+
   const search = sParams.search || "";
   const category = sParams.category || "";
   const location = sParams.location || "";
 
-    const params = new URLSearchParams();
-    if (search) {
-        params.set("search", search);
-    }
-    if (category) {
-        params.set("category", category);
-    }
-    if (location) {
-        params.set("location", location);
-    }
-
-      const events = await fetchEvents(params);
-    // console.log(params.toString());
-
-
   return (
     <div className="min-h-screen py-16 px-6 max-w-7xl mx-auto w-full space-y-12">
-      {/* HEADER */}
       <div className="text-center md:text-left space-y-2">
         <h1 className="text-4xl font-extrabold tracking-tight text-white">
           Browse Premium Events
@@ -39,7 +22,6 @@ const EventsPage = async ({ searchParams }) => {
         </p>
       </div>
 
-      {/* Interactive client-side filters wrapped in Suspense */}
       <Suspense
         fallback={
           <div className="h-28 w-full glass animate-pulse rounded-2xl" />
@@ -48,8 +30,8 @@ const EventsPage = async ({ searchParams }) => {
         <FilterPanel />
       </Suspense>
 
-      {/* Server component events list wrapped in Suspense */}
       <Suspense
+        key={`${search}-${category}-${location}`}
         fallback={
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {Array(6)
@@ -70,15 +52,7 @@ const EventsPage = async ({ searchParams }) => {
           </div>
         }
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {events.map((event) => (
-            <EventCard
-              key={event._id}
-              event={event}
-              buttonText="View Details"
-            />
-          ))}
-        </div>
+        <EventsList search={search} category={category} location={location} />
       </Suspense>
     </div>
   );

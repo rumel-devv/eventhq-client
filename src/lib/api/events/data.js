@@ -1,3 +1,4 @@
+
 import { serverFetch } from '../server';
 
 export const myEvents = async (email) => {
@@ -10,6 +11,8 @@ export const myEvents = async (email) => {
 };
 
 export const fetchEvents = async (query) => {
+   console.log('quey',query);
   const result = await serverFetch(`/api/events?${query.toString()}`);
+  console.log('result',result);
   return result;
 };

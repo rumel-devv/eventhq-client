@@ -23,11 +23,11 @@ export async function POST(req) {
     //   }
     let lineObj;
     let metaObj = {};
-
+     console.log(type,"typeee");
     if (type == 'subscription') {
       lineObj = {
         // Provide the exact Price ID (for example, price_1234) of the product you want to sell
-        price: 'price_1TgpUbKExS1h0fIImDNtiaU2',
+        price: 'price_1Ti1ndCb0bEyfB5skGcJkuH7',
         quantity: 1,
       };
     } else {

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 const UpgradePremiumButton = () => {
     const updateToPremium = async () => {
-        const res = await fetch("/api/checkout_sessions", {
+        const res = await fetch("/api/checkout_sessions ", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

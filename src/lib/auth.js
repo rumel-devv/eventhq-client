@@ -1,3 +1,5 @@
+import dns from "node:dns"
+dns.setServers(["1.1.1.1","8.8.8.8","8.8.4.4"])
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { role } from "better-auth/client";
