@@ -10,23 +10,8 @@ import {
   Chip
 } from "@heroui/react";
 
-const PaymentsTable = () => {
-  const payments = [
-    {
-      _id: "p1",
-      transactionId: "ch_mock_stripe_transaction_12345",
-      amount: 298.00,
-      paidAt: "2026-06-03T10:00:00Z",
-      paymentStatus: "paid"
-    },
-    {
-      _id: "p2",
-      transactionId: "ch_mock_stripe_transaction_67890",
-      amount: 45.00,
-      paidAt: "2026-05-15T14:30:00Z",
-      paymentStatus: "paid"
-    }
-  ];
+const PaymentsTable = ({payments}) => {
+ 
 
   return (
     <Card className="border border-white/5 bg-slate-900/40 backdrop-blur-xl shadow-2xl p-6 rounded-2xl">
@@ -45,7 +30,7 @@ const PaymentsTable = () => {
                   <TableCell className="py-4 px-6 align-middle font-semibold text-indigo-400 truncate max-w-[200px]">
                     {p.transactionId}
                   </TableCell>
-                  <TableCell className="py-4 px-6 align-middle font-bold text-green-400">${p.amount?.toFixed(2)}</TableCell>
+                  <TableCell className="py-4 px-6 align-middle font-bold text-green-400">${Number(p.amount)?.toFixed(2)}</TableCell>
                   <TableCell className="py-4 px-6 align-middle text-slate-300 font-medium">{new Date(p.paidAt).toLocaleDateString()}</TableCell>
                   <TableCell className="py-4 px-6 align-middle">
                     <Chip

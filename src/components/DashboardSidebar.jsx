@@ -33,8 +33,8 @@ const DashboardSideBar = () => {
 
   const attendeeMenu = [
     { key: "overview", label: "Overview", icon: FaUserCircle, href: "/dashboard/attendee" },
-    { key: "tickets", label: "My Tickets", icon: FaTicketAlt, href: "/dashboard/tickets" },
-    { key: "payments", label: "Payments", icon: FaHistory, href: "/dashboard/payments" },
+    { key: "tickets", label: "My Tickets", icon: FaTicketAlt, href: "/dashboard/attendee/tickets" },
+    { key: "payments", label: "Payments", icon: FaHistory, href: "/dashboard/attendee/payments" },
   ]
 
   const adminMenu = [

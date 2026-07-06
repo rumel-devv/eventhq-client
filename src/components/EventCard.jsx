@@ -5,7 +5,7 @@ import Image from "next/image";
 
 
 export default function EventCard({ event  }) {
-  console.log("ventcard",event);
+  // console.log("ventcard",event);
   const currentEvent = event || DEFAULT_EVENT;
   return (
     <Card className="bg-slate-900/50 border border-white/5 backdrop-blur-xl hover:border-pink-500/30 transition-all duration-300 h-full flex flex-col p-0 overflow-hidden" radius="lg">
